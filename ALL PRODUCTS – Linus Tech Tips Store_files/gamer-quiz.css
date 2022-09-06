@@ -1,0 +1,553 @@
+:root {
+  --duration: 0.5s;
+}
+
+.gamer-quiz-container {
+  overflow: hidden;
+}
+.gamer-quiz-container .gamer-quiz-next-button {
+  margin-top: 10px;
+  transition: opacity var(--duration) ease-in-out, color var(--duration) linear, border var(--duration) linear;
+  opacity: 1;
+  text-transform: uppercase;
+  font-size: 1em;
+}
+
+.gamer-quiz-container .gamer-quiz-next-button.disabled {
+  cursor: wait;
+  color: #6a6a6a;
+  border: 1px solid rgba(106, 106, 106, 0.2);
+}
+
+.gamer-quiz-container .gamer-quiz-next-button::before{
+  transition: background-color var(--duration) ease-in-out;
+}
+
+.gamer-quiz-container .gamer-quiz-next-button.disabled::before{
+  background-color: white;
+}
+
+.gamer-quiz-container .quiz-question-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  text-align:center;
+}
+.gamer-quiz-container .quiz-question-container .gamer-quiz-button-container {
+  padding: 10px 10px;
+  position: relative;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+.gamer-quiz-container .quiz-question-container.done {
+  left: -550px;
+}
+.gamer-quiz-start-button {
+  margin-top: 10px;
+  opacity: 1;
+  transition: opacity var(--duration) ease-in-out 4.5s;
+}
+.gamer-quiz-start-button.hidden{
+  opacity: 0;
+  cursor: default;
+}
+.gamer-quiz {
+  background-color: #ffffff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity var(--duration) ease-in-out;
+}
+.gamer-quiz.wait{
+  cursor: wait;
+}
+.quiz-question {
+  transition: left var(--duration) ease-in-out;
+  opacity: 0;
+  top: 0px;
+  position: absolute;
+  left: 550px;
+  width: 100%;
+  padding: 10px 10px;
+}
+.quiz-question.active {
+  left: 0px;
+  opacity: 1;
+  padding: 0px 50px;
+}
+.quiz-question.done {
+  left: -550px;
+  transition: left var(--duration) ease-in-out;
+}
+.quiz-question .quiz-input {
+  margin-bottom: 10px;
+}
+.quiz-input.error {
+  border-color: red;
+}
+.quiz-input.error.animate {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.quiz-radio-question.error.animate {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.quiz-start {
+  margin-top:20px;
+  opacity: 0;
+  transition: opacity var(--duration) ease-in-out;
+  padding: 25px 20px;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  transform: translateZ(0); /* Safari fix */
+}
+.quiz-start.active {
+  opacity: 1;
+}
+.quiz-start.hidden {
+  display: none;
+}
+.quiz-finish {
+  margin-top:20px;
+  opacity: 0;
+  transition: opacity var(--duration) ease-in-out;
+}
+.quiz-finish.active {
+  opacity: 1;
+}
+.quiz-finish.hidden {
+  display: none;
+}
+.gamer-quiz.hidden {
+  display: none;
+}
+.gamer-quiz.active {
+  opacity: 1;
+}
+#product-submit {
+  margin-top: 10px;
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translateX(-1px);
+  }
+  20%, 80% {
+    transform: translateX(2px);
+  }
+  30%, 50%, 70% {
+    transform: translateX(-5px);
+  }
+  40%, 60% {
+    transform: translateX(5px);
+  }
+}
+.quiz-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  background-color: #000;
+  opacity: 0;
+  transition: opacity var(--duration) ease-in-out;
+}
+.quiz-overlay.hidden {
+  display: none;
+}
+.quiz-overlay.active {
+  opacity: 0.5;
+}
+.quiz-title {
+  padding: 15px 30px 0px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.quiz-question-title{
+  font-weight: bold;
+  font-size: 20px;
+  padding:5px 0px 10px 0px;
+  text-transform: uppercase;
+}
+
+.quiz-close {
+  cursor: pointer;
+}
+.quiz-close svg.Icon--close{
+  stroke-width: 2px;
+}
+.checkout{
+  margin-top:10px;
+}
+.claim-loot{
+  cursor: pointer;
+  margin-bottom:12px;
+}
+
+/* Sets the containers height and width */
+.base-timer {
+  position: absolute;
+  height: 35px;
+  width: 35px;
+  right:10px;
+}
+
+/* Removes SVG styling that would hide the time label */
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+/* The SVG path that displays the timer's progress */
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+.base-timer__label {
+  position: absolute;
+
+  /* Size should match the parent container */
+  width: 35px;
+  height: 35px;
+
+  /* Keep the label aligned to the top */
+  top: 0;
+
+  /* Create a flexible box that centers content vertically and horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Sort of an arbitrary number; adjust to your liking */
+  font-size: 48px;
+}
+
+.quiz-title-name{
+  font-weight:bold;
+}
+
+.quiz-begin-lock {
+  font-size: 20px;
+  position: absolute;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+}
+.quiz-radio-container{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.quiz-radio-input{
+  display:none;
+}
+
+.quiz-radio-question{
+  font-size: 0.9em;
+  font-weight: bold;
+    align-items: center;
+  justify-content: center;
+  display: inline-flex;
+  width: 46%;
+  padding: 5px 5px;
+  margin: 5px;
+  cursor:pointer;
+  transition: background-color 0.3s ease-in-out, color: 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+.quiz-radio-input + .quiz-radio-question{  
+  border: 1px solid black;  
+  color:black;
+  transition: background-color 0.35s ease-in-out, border 0.35s ease-in-out;
+}
+
+.quiz-radio-input:checked + .quiz-radio-question{
+  background-color: black;
+  color: white;
+  border: 1px black solid;
+}
+.quiz-radio-input.error:checked + .quiz-radio-question{
+  background-color: #ff2f09;
+  color: white;
+  border: 1px #ff2f09 solid;
+}
+.quiz-radio-input.correct:checked + .quiz-radio-question{
+  background-color: #0B930C;
+  color: white;
+  border: 1px #0B930C solid;
+}
+
+.quiz-question-container{
+	user-select: none;
+}
+
+.quiz-heart svg{  
+  width:20px;
+  height:20px;
+}
+.quiz-heart.grey .cls-f{
+  transition: all var(--duration) ease-in-out;
+}
+
+.quiz-heart.grey svg .cls-f{
+  opacity: 0; 
+}
+
+.question-skip{
+  margin:10px;
+  color:#6a6a6a;
+  cursor: pointer;
+  font-size:0.85em;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.question-skip-icon{
+  
+}
+.gamer-quiz-fail{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: white;
+  z-index: 110;
+  padding: 50px;
+  text-align: center;  
+  transition: opacity 0s ease-in-out, z-index 0s;
+  opacity: 1;
+  z-index:110;
+}
+
+.gamer-quiz-fail.hidden{
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--duration) ease-in-out, z-index 0.25s linear 0.75s;
+}
+    
+.gamer-quiz-fail .gamer-quiz-next-button{
+  border-color: transparent;
+}
+    
+.fail-title{
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.out-of-stock.hidden, 
+.quiz-start-message.hidden, 
+.out-of-stock-finish.hidden, 
+.quiz-finish-message.hidden,
+.reserve-list.hidden{
+	display:none;
+}
+/*
+ * https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/
+ */
+.countdown {
+  display: grid;
+  margin: 4px auto;
+  width: 40px;
+  height: 40px;
+  stroke: #2d2d2d;
+}
+
+.wait-container, .centered-message{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+.wait-container .countdown {
+  width: 100px;
+  height: 100px;
+}
+
+.countdown-container, 
+.wait-container, {
+  position: relative;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.countdown svg {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.countdown [r] {
+  fill: none;
+  stroke: silver;
+}
+.countdown [r] + [r] {
+  transform: rotate(-90deg);
+  stroke-linecap: round;
+  stroke: #9b9b9b;
+  stroke-dashoffset: 100px;
+  stroke: #616161;
+  animation: rotation 0.8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.reserve-list{
+  position: relative
+}
+.quiz-init,
+.quiz-max-redemption,
+.quiz-validation{
+    transition: opacity var(--duration) ease-in-out, z-index 0.25s linear 0.75s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: white;
+    z-index: 110;
+    padding: 50px;
+    text-align: center;
+    transition: opacity 0s ease-in-out, z-index 0s;
+    opacity: 1;
+    z-index: 110;
+}
+
+.quiz-init.hidden,
+.quiz-max-redemption.hidden,
+.quiz-validation.hidden{
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--duration) ease-in-out, z-index 0.25s linear 0.75s;
+}
+
+.expires-message.hidden{
+   display:none;
+}
+.prompt-image{
+  width: 240px;
+  height: 134px;
+  border-radius: 6px;
+  margin: 12px 0;
+}  
+    
+.question-prompt-video {
+  width: 320px;
+  height: 180px;
+  border-radius: 5px
+}
+.question-prompt-video::-webkit-media-controls-fullscreen-button {
+  display: none;
+}
+    
+.reserve-countdown.hidden,
+.reserve-confirm.hidden {
+  display:none;
+}
+    
+.afk-countdown{
+  width: 100%;
+  border: 1px solid black;
+  position:relative;
+  height:45px;    
+  overflow: hidden;
+  margin: 12px 0;
+}
+.afk-message-reset, .afk-message-return{
+  position: absolute; 
+  width:100%; 
+  height:45px;    
+  color:white;  
+  mix-blend-mode: exclusion;
+  text-align: center;
+  top:0px;
+  left:0px;
+  padding: 14px 28px;
+  line-height: normal;
+  text-transform: uppercase;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  cursor:pointer;
+}
+.afk-message-reset.hidden, 
+.afk-message-return.hidden,
+.leave-line-container.hidden,
+.position-container.hidden{
+  display:none;
+}
+.afk-countdown-progress{
+  /* background-color: #ff500d; */
+  background-color: #1c1b1b;
+  width:100%;
+  height:45px;    
+  transition: width 0.1s linear;
+  border:none;
+}
+    
+.leave-line-container{
+  text-align:center;
+  color: #666
+}
+    
+.leave-line{
+  cursor: pointer;
+}
+    
+    
+@media (min-width: 551px) {
+  .gamer-quiz-container {
+    width: 550px;
+    height: 500px;
+  }
+  .quiz-question {
+    padding-right: 10px;
+  }
+  .gamer-quiz-button-container {
+    padding-right: 20px;
+    margin-right: 10px;
+  }
+}
+    
+@media (max-width: 550px) {
+  .gamer-quiz-container {
+    width: 300px;
+    height:550px;
+  }
+  .quiz-question.active {
+    padding: 0px 10px;
+  }	
+  .quiz-radio-question{
+    width: 100%;
+  }
+  .quiz-radio-question.image{
+  	width:45%;
+  }
+
+  .question-prompt-video {
+    width: 256px;
+    height: 144px;
+  }
+}
+    
